@@ -19,23 +19,62 @@ public class User {
 
 	private String nickName;
 
-	private Integer sex;
+	private String password;
 
-	public User() {
-		userId = "1";
-		userName = "xjh";
-		nickName = "hhh";
-		sex = 1;
+	private String img;
 
-		// TODO Auto-generated constructor stub
+	private String address;
+
+	private double money;
+
+	private String phone;
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId == null ? null : userId.trim();
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public double getMoney() {
+		return money;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getUserName() {
@@ -52,14 +91,6 @@ public class User {
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName == null ? null : nickName.trim();
-	}
-
-	public Integer getSex() {
-		return sex;
-	}
-
-	public void setSex(Integer sex) {
-		this.sex = sex;
 	}
 
 }

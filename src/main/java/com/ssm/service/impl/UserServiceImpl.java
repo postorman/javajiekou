@@ -32,13 +32,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserById(String userId) {
 		// TODO Auto-generated method stub
-		return null;
+		return userMapper.selectByPrimaryKey(userId);
 	}
 
 	@Override
-	public int inset(HashMap<String, Object> map) {
+	public int inset(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return userMapper.insert(map);
 	}
 
 	@Override
@@ -46,6 +46,12 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 
 		return userMapper.selectAll();
+	}
+
+	@Override
+	public HashMap<String, Object> selectGood() {
+		// TODO Auto-generated method stub
+		return userMapper.selectGood();
 	}
 
 }

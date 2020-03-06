@@ -20,7 +20,9 @@ import com.ssm.pojo.User;
 public interface UserService {
 	public User getUserById(String userId);
 
-	public int inset(HashMap<String, Object> map);
+	public int inset(HashMap<String, String> map);
 
 	public List<User> selectAll();
+
+	HashMap<String, Object> selectGood();
 }

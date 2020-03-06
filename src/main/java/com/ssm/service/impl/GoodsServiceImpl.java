@@ -2,6 +2,7 @@ package com.ssm.service.impl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +28,57 @@ public class GoodsServiceImpl implements GoodsService {
 	private AddGoods adGoods;
 
 	@Override
-	public List<Goods> selectAll() {
+	public List<Goods> selectAllUser(@Param("page") Integer page, @Param("pageSize") Integer pageSize,
+			@Param("userId") String userId) {
 		// TODO Auto-generated method stub
-		return adGoods.selectAll();
+		return adGoods.selectAllUser(page, pageSize, userId);
+	}
+
+	@Override
+	public int insert(Goods goods) {
+		return adGoods.addGood(goods);
+	}
+
+	@Override
+	public int upGoods(Integer id) {
+		// TODO Auto-generated method stub
+
+		return adGoods.upGoods(id);
+	}
+
+	@Override
+	public int downGoods(Integer id) {
+		// TODO Auto-generated method stub
+		return adGoods.downGoods(id);
+	}
+
+	@Override
+	public Goods selectById(Integer a) {
+		// TODO Auto-generated method stub
+		return adGoods.selectByPrimaryKey(a);
+	}
+
+	@Override
+	public String stage(Integer id) {
+		// TODO Auto-generated method stub
+		return adGoods.stage(id);
+	}
+
+	@Override
+	public int delete(Integer id) {
+		// TODO Auto-generated method stub
+		return adGoods.deleteByKey(id);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(Goods record) {
+		// TODO Auto-generated method stub
+		return adGoods.updateByPrimaryKeySelective(record);
+	}
+
+	@Override
+	public List<Goods> selectAll(Integer page, Integer pageSize) {
+		// TODO Auto-generated method stub
+		return adGoods.selectAll(page, pageSize);
 	}
 }

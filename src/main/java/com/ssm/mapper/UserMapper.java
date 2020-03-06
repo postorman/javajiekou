@@ -20,7 +20,7 @@ import com.ssm.pojo.User;
 public interface UserMapper {
 	int deleteByPrimaryKey(String userId);
 
-	int insert(HashMap<String, Object> map);
+	int insert(HashMap<String, String> map);
 
 	int insertSelective(User record);
 
@@ -28,7 +28,11 @@ public interface UserMapper {
 
 	int updateByPrimaryKey(User record);
 
+	int updatePassWordByPrimaryKey(User record);
+
 	User selectByPrimaryKey(String userId);
 
 	List<User> selectAll();
+
+	HashMap<String, Object> selectGood();
 }

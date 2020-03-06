@@ -9,11 +9,71 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         INSERT INTO upload(bookname,price,stock,img)
         values(#{bookname},#{price},#{stock},#{img})
     </insert>
+      <select id="selectByPrimaryKey" resultType="com.ssm.pojo.Goods" parameterType="java.lang.Integer" >
+    select *
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+        <select id="stage" resultType="java.lang.String" parameterType="java.lang.Integer" >
+    select stage
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
       <insert id="addGood" parameterType="com.ssm.pojo.Goods">
-        INSERT INTO goods(name,price,stock,img,note)
-        values(#{name},#{price},#{stock},#{img},#{note},#{type})
+        INSERT INTO goods(name,price,stock,img,note,type,userId)
+        values(#{name},#{price},#{stock},#{img},#{note},#{type},#{userId})
     </insert>
       <select id="selectAll" resultType="com.ssm.pojo.Goods">
-    select * from goods
+    select * from goods order by id desc limit ${page},${pageSize}
+  
   </select>
+   <select id="selectAllUser" resultType="com.ssm.pojo.Goods">
+    select * from goods 
+    where userId = #{userId,jdbcType=VARCHAR}
+    order by id desc limit ${page},${pageSize}
+  </select>
+     <update id="upGoods"  parameterType="java.lang.Integer" >
+    update goods
+    set stage = 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+     <update id="downGoods" parameterType="java.lang.Integer" >
+  update goods
+    set stage = 0
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <delete id="deleteByKey" parameterType="java.lang.Integer" >
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.pojo.Goods" >
+    update order
+    <set >
+         <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+     <if test="stock != null" >
+        stock = #{stock,jdbcType=INTEGER}, 
+      </if>
+      <if test="img != null" >
+        img #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        note = #{note,jdbcType=VARCHAR}, 
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR}, 
+      </if>
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+       <if test="stage != null" >
+        stage =  #{stage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

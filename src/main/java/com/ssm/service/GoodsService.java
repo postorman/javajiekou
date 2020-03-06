@@ -2,6 +2,8 @@ package com.ssm.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ssm.pojo.Goods;
 
 /**
@@ -17,7 +19,22 @@ import com.ssm.pojo.Goods;
  * @版本: 1.0
  */
 public interface GoodsService {
+	public int insert(Goods goods);
 
-	public List<Goods> selectAll();
+	public Goods selectById(Integer a);
 
+	public List<Goods> selectAllUser(@Param("page") Integer page, @Param("pageSize") Integer pageSize,
+			@Param("userId") String userId);
+
+	public List<Goods> selectAll(@Param("page") Integer page, @Param("pageSize") Integer pageSize);
+
+	public int upGoods(Integer id);
+
+	public int downGoods(Integer id);
+
+	public String stage(Integer id);
+
+	public int delete(Integer id);
+
+	public int updateByPrimaryKeySelective(Goods record);
 }

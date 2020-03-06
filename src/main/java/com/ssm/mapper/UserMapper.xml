@@ -5,10 +5,14 @@
     <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
     <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
-    <result column="SEX" property="sex" jdbcType="INTEGER" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+     <result column="IMG" property="img" jdbcType="VARCHAR" />
+      <result column="MONEY" property="money" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    USER_ID, USER_NAME, NICK_NAME, SEX
+    USER_ID, USER_NAME, NICK_NAME,PASSWORD, ADDRESS,PHONE,IMG,MONEY
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -20,11 +24,10 @@
     delete from user
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.ssm.pojo.User" >
-    insert into user (USER_ID, USER_NAME, NICK_NAME, 
-      SEX)
-    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=INTEGER})
+  <insert id="insert" parameterType="java.util.HashMap" >
+    insert into user (USER_ID,PASSWORD,PHONE)
+    values (#{userId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ssm.pojo.User" >
     insert into user
@@ -38,9 +41,7 @@
       <if test="nickName != null" >
         NICK_NAME,
       </if>
-      <if test="sex != null" >
-        SEX,
-      </if>
+     
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -76,12 +77,23 @@
     update user
     set USER_NAME = #{userName,jdbcType=VARCHAR},
       NICK_NAME = #{nickName,jdbcType=VARCHAR},
-      SEX = #{sex,jdbcType=INTEGER}
+      ADDRESS = #{address,jdbcType=INTEGER},
+      IMG = #{img,jdbcType=INTEGER},
+      PHONE = #{phone,jdbcType=INTEGER},
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+    <update id="updatePassWordByPrimaryKey" parameterType="com.ssm.pojo.User" >
+    update user
+    set PASSWORD = #{password,jdbcType=VARCHAR}
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from user
+  </select>
+    <select id="selectGood" resultType="java.util.HashMap" parameterType="java.lang.String" >
+    select *
+    from cpf52018
   </select>
 </mapper>

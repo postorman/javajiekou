@@ -14,11 +14,29 @@ package com.ssm.pojo;
  */
 public class Goods {
 	private String name;
-	private Integer price;
+	private Double price;
 	private Integer stock;
 	private String img;
 	private String note;
 	private String type;
+	private String userId;
+	private String stage;
+
+	public String getStage() {
+		return stage;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setStage(String stage) {
+		this.stage = stage;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	public String getType() {
 		return type;
@@ -40,7 +58,7 @@ public class Goods {
 		return note;
 	}
 
-	public Integer getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
@@ -60,7 +78,7 @@ public class Goods {
 		this.note = note;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
